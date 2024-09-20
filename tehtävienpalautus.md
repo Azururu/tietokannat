@@ -5,6 +5,7 @@ select * from goal;
 
 
 select name from airport where iso_country = "FI";
+
 ![image](https://github.com/user-attachments/assets/1de33a3d-f264-4f00-aaac-5d4cfb209429)
 
 ![image](https://github.com/user-attachments/assets/a7096ae9-c56b-4ecb-978c-0739ad8935a6)
