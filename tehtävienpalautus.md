@@ -46,6 +46,7 @@ select co2_consumed from game where screen_name = "Ilkka";
 
 
 select co2_budget from game limit 1;
+
 ![image](https://github.com/user-attachments/assets/198e23b6-c016-4c8a-ba93-111f0e713157)
 
 
