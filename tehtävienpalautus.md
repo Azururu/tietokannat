@@ -123,3 +123,102 @@ and game.id = game_id and goal.id = goal_id
 and screen_name = "Ilkka" and goal.name = "CLOUDS";
 
 ![image](https://github.com/user-attachments/assets/434e69f1-048c-4511-8d62-bcd0742deb5d)
+
+
+# Viikko 3 / Join ja sisäkyselyt
+
+select country.name as "country name", airport.name as "airport name"
+from country
+inner join airport on airport.iso_country = country.iso_country
+where country.name = "Finland" and scheduled service = "yes";
+
+![image](https://github.com/user-attachments/assets/336565ff-b8dd-449e-ab45-8bcf3e65c1cb)
+
+
+select game.screen_name, airport.name
+from game
+inner join airport on airport.ident = game.location;
+
+![image](https://github.com/user-attachments/assets/1a43a139-29f9-42f1-8d9b-b8c919e2ed6d)
+
+
+select game.screen_name, country.name
+from game
+inner join airport on game.location = airport.ident
+inner join country on airport.iso_country = country.iso_country;
+
+![image](https://github.com/user-attachments/assets/c44e355f-a972-4d6e-bac9-fe25a4263cae)
+
+
+select airport.name, game.screen_name
+from airport
+left join game on airport.ident = game.location
+where name like "%Hels%";
+
+![image](https://github.com/user-attachments/assets/d3b9e11a-aab2-4cba-aecc-ad4bb53f3663)
+
+
+select goal.name, game.screen_name
+from goal
+left join goal_reached on goal.id = goal_reached.goal_id
+left join game on goal_reached.game_id = game.id;
+
+![image](https://github.com/user-attachments/assets/a16bf5b4-358a-44d7-b624-4cb3eb386a47)
+
+
+select name
+from country
+where iso_country in(
+select iso_country
+from airport
+where name like "Satsuma%");
+
+![image](https://github.com/user-attachments/assets/d9ba2197-ce92-4d3f-99ca-6bae725c343c)
+
+
+select name
+from airport
+where iso_country in(
+select iso_country
+from country
+where name = "Monaco");
+
+![image](https://github.com/user-attachments/assets/6578e137-25cc-4090-a2d5-94200b0b8168)
+
+
+select screen_name
+from game
+where id in(
+select game_id
+from goal_reached
+where goal_id in(
+select id
+from goal
+where name = "CLOUDS")
+);
+
+![image](https://github.com/user-attachments/assets/ee88faa8-d700-46d1-b4a9-f5131fbd0fb7)
+
+
+select name
+from country
+where iso_country not in(
+select iso_country
+from airport);
+
+![image](https://github.com/user-attachments/assets/4bdaa1f8-52df-4f04-9044-21e857417061)
+
+
+select name
+from goal
+where id not in(
+select goal_id
+from goal_reached
+where game_id in(
+select id
+from game
+where screen_name = "Heini")
+);
+
+![image](https://github.com/user-attachments/assets/b5e9761d-09d5-4ede-9a29-f28a4cbd1750)
+
