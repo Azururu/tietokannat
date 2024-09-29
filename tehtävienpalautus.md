@@ -1,3 +1,6 @@
+# Viikko 1
+Palautettu moodlessa
+
 # Viikko 2 / Yhteen tauluun kohdistuvat kyselyt ja where-osan liitosehto
 
 select * from goal;
