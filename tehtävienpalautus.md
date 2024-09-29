@@ -222,3 +222,131 @@ where screen_name = "Heini")
 
 ![image](https://github.com/user-attachments/assets/b5e9761d-09d5-4ede-9a29-f28a4cbd1750)
 
+# Viikko 4
+
+
+select max(elevation_ft)
+from airport;
+
+![image](https://github.com/user-attachments/assets/fbadb85d-d1c5-4425-9d90-230f69584e11)
+
+
+select country.continent, count(*)
+from country
+group by country.continent;
+
+![image](https://github.com/user-attachments/assets/83950314-63dc-490c-8e6e-68077218d681)
+
+
+select screen_name, count(*)
+from game, goal_reached
+where id = game_id
+group by screen_name;
+
+![image](https://github.com/user-attachments/assets/80caa9eb-1d17-493c-8aa8-670f747a2002)
+
+
+select screen_name
+from game
+where co2_consumed in(
+select min(co2_consumed)
+from game);
+
+![image](https://github.com/user-attachments/assets/d676dfeb-b641-47ec-a37a-4f5f1fa150ab)
+
+
+select country.name, count(*)
+from country, airport
+where country.iso_country = airport.iso_country
+group by country.iso_country
+order by count(*) desc
+limit 50;
+
+![image](https://github.com/user-attachments/assets/f9f6994f-375c-4034-8514-ac657ca19f3f)
+
+
+select country.name
+from country, airport
+where country.iso_country = airport.iso_country
+group by country.iso_country
+having count(*) > 1000;
+
+![image](https://github.com/user-attachments/assets/00cedf05-504e-48cb-9263-104d5ddef1ce)
+
+
+select airport.name
+from airport
+where elevation_ft in(
+select max(elevation_ft)
+from airport);
+
+![image](https://github.com/user-attachments/assets/f79c0cfc-48fb-45c0-a068-8c851e6a7a7b)
+
+
+select country.name
+from country
+where country.iso_country in(
+select airport.iso_country
+from airport
+where elevation_ft in(
+select max(elevation_ft)
+from airport)
+);
+
+![image](https://github.com/user-attachments/assets/3a100f18-874f-4f62-9eed-a44d2b154229)
+
+
+select count(*)
+from game, goal_reached
+where id = game_id and screen_name = "Vesa"
+group by screen_name;
+
+![image](https://github.com/user-attachments/assets/de28904f-785d-4380-b22d-27c753fd043c)
+
+
+select name
+from airport
+where latitude_deg in(
+select min(latitude_deg)
+from airport);
+
+![image](https://github.com/user-attachments/assets/a02b4c0b-9002-4ce9-863c-260e24184ba7)
+
+delete from goal_reached;
+select * from goal_reached;
+
+
+delete from game;
+select * from game;
+
+# Viikko 5 / Tietokannan suunnittelu harjoitukset
+
+1.
+ident
+
+2.
+country
+
+3.
+a) Maassa voi olla monta lentokenttää
+
+4.
+Tosi
+
+5.
+Epätosi
+
+6.
+b) country-tauluun tulee viiteavain airport-tauluun
+
+7.
+a) game-tauluun tulee viiteavain airport-tauluun
+
+8.
+Tosi
+
+9.
+c) yhteyden salmiakista tulee oma taulunsa
+
+10.
+a) viiteavain sekä goal-tauluun että game-tauluun
